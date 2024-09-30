@@ -1,66 +1,57 @@
-// LoginHandler.js
 import { useMutation } from "@apollo/client";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import REGISTER_MUTATION from "../graphql/registerMutation";
+import { toast } from "react-toastify";
 
-export const useRegisterHandler = () => {
-  const [login, { loading: registerLoading, error: registerError }] =
-    useMutation(REGISTER_MUTATION);
+export const useRegisterHandler = (form) => {
+  const [register, { loading: registerLoading, error: registerError }] = useMutation(REGISTER_MUTATION);
   const navigate = useNavigate();
 
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [tenantError, setTenantError] = useState("");
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate("/dashboard");
-    }
-  }, [navigate]);
-
-  const handleLogin = async (values) => {
-    setEmailError("");
-    setPasswordError("");
-    setTenantError("");
-
+  const handleRegister = async (values) => {
     try {
-      const response = await login({
+      const { data } = await register({
         variables: {
           email: values.email,
           password: values.password,
+          passwordConfirmation: values.passwordconfirm,
           tenantId: parseInt(values.tenant, 10),
         },
       });
 
-      if (response.data.loginUser) {
-        localStorage.setItem("token", response.data.loginUser.token);
-        navigate("/dashboard");
-      }
-    } catch (err) {
-      console.error("Login error:", err);
-      if (err.message.includes("Invalid email")) {
-        setEmailError(
-          "Email does not match our records. Please check your email or register."
+      if (data?.createUser?.errors?.length > 0) {
+        const emailError = data.createUser.errors.find(
+          (error) => error.field === "email"
         );
+
+        if (emailError) {
+          form.setFields([
+            {
+              name: "email",
+              errors: [emailError.message || "An error occurred during registration!"],
+            },
+          ]);
+        } else {
+          form.setFields([
+            {
+              name: "email",
+              errors: ["Email is already taken!"],
+            },
+          ]);
+        }
+      } else if (data?.createUser?.user) {
+        toast.success("Register successffully");
+        navigate("/"); 
+      } else {
+        alert("An unexpected error occurred. Please try again.");
       }
-      if (err.message.includes("Invalid password")) {
-        setPasswordError("Password is incorrect. Please check your password.");
-      }
-      if (err.message.includes("Invalid tenant")) {
-        setTenantError(
-          "Tenant ID is not registered. Please select a valid tenant."
-        );
-      }
+    } catch (e) {
+      alert("A network or server error occurred. Please try again.");
     }
   };
 
   return {
-    handleLogin,
+    handleRegister,
     registerLoading,
     registerError,
-    emailError,
-    passwordError,
-    tenantError,
   };
 };

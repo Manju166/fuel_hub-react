@@ -5,19 +5,18 @@ import PageRoutes from './routes/PageRoutes'
 import Login from './features/login/page/Login'
 import Register from './features/register/page/Register'
 import './App.css'
+import { APP_URL } from './constants/APP_URL'
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route index path="/" element={<Login/>} />
-      <Route path="/register" element={<Register />} />
-      {/* <Route element={<PrivateRoute />}>
-        <Route path="/dashboard/*" element={<PageRoutes />} />
-        <Route
-          path="/consumerbranch/:consumerId"
-          element={<ConsumerBranch />}
-        />
-      </Route> */}
+    <Route path={APP_URL.REGISTER} element={<Register />} />
+        <Route index path={APP_URL.LOGIN} element={<Login />} />
+        
+        <Route element={<PrivateRoute />}>
+          <Route path={APP_URL.DASHBOARD} element={<PageRoutes />} />
+        </Route>
+        
     </Routes>
   </BrowserRouter>
   )

@@ -1,8 +1,8 @@
-// LoginHandler.js
 import { useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LOGIN_MUTATION from "../graphql/LoginMutation";
+import { toast } from "react-toastify";
 
 export const useLoginHandler = () => {
   const [login, { loading: loginLoading, error: loginError }] =
@@ -12,17 +12,38 @@ export const useLoginHandler = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [tenantError, setTenantError] = useState("");
+  const [tokenError, setTokenError] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate("/dashboard");
+    try {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        const isValidToken = validateToken(token);
+
+        if (isValidToken) {
+          navigate("/dashboard");
+        } else {
+          setTokenError("Invalid token found. Please log in again.");
+          localStorage.removeItem("token");
+        }
+      }
+    } catch (err) {
+      console.error("Token validation error:", err);
+      setTokenError("Error reading authentication token. Please log in again.");
+      localStorage.removeItem("token");
     }
   }, [navigate]);
+
+  const validateToken = (token) => {
+    return !!token;
+  };
 
   const handleLogin = async (values) => {
     setEmailError("");
     setPasswordError("");
     setTenantError("");
+    setTokenError("");
 
     try {
       const response = await login({
@@ -36,9 +57,13 @@ export const useLoginHandler = () => {
       if (response.data.loginUser) {
         localStorage.setItem("token", response.data.loginUser.token);
         navigate("/dashboard");
+        toast.success("Logged in successfully!!");
+      }
+      else {
+        toast.error("Login failed:", response.data.loginUser.error);
       }
     } catch (err) {
-      console.error("Login error:", err);
+      toast.error("Error:", err.message);
       if (err.message.includes("Invalid email")) {
         setEmailError(
           "Email does not match our records. Please check your email or register."
@@ -62,5 +87,6 @@ export const useLoginHandler = () => {
     emailError,
     passwordError,
     tenantError,
+    tokenError,
   };
 };

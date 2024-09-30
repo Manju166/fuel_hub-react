@@ -16,9 +16,6 @@ const Login = () => {
     handleLogin,
     loginLoading,
     loginError,
-    emailError,
-    passwordError,
-    tenantError,
   } = useLoginHandler(); 
 
   return (
@@ -32,8 +29,9 @@ const Login = () => {
       >
         <Form.Item
           name="tenant"
-          label="Tenant"
+          label={<span>Tenant</span>}
           rules={[{ required: true, message: "Please select your Tenant!" }]}
+          required={false}
         >
           <Select placeholder="Select a Tenant">
             {data?.tenants?.map((tenant) => (
@@ -46,22 +44,24 @@ const Login = () => {
 
         <Form.Item
           name="email"
-          label="Email Address"
+          label={<span>Email Address</span>}
           rules={[
             { required: true, message: "Please input your email!" },
             { type: "email", message: "Invalid email format!" },
           ]}
+          required={false}
         >
           <Input prefix={<MailOutlined />} placeholder="Enter your email" />
         </Form.Item>
 
         <Form.Item
           name="password"
-          label="Password"
+          label={<span>Password</span>}
           rules={[
             { required: true, message: "Please input your password!" },
             { min: 8, message: "Password must be at least 8 characters long!" },
           ]}
+          required={false}
         >
           <Input.Password
             prefix={<LockOutlined />}

@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: inherit;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar--dark {
+    background-color: black;
+    color: white;
+}
+
+.navbar--light {
+    background-color: white;
+    color: black;
+}
+.navbar img{
+    width: calc(10px + 10vw);
+    height: 9.2vh;
+}
+.navbar__theme-toggle {
+    background: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.navbar--dark .navbar__theme-icon {
+    background-color: black;
+    color: white;
+}
+
+.navbar__notification-icon, .navbar__user-icon {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+}
