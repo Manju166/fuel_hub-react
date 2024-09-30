@@ -12,28 +12,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
-
-.navbar--dark {
-    background-color: black;
-    color: white;
-}
-
-.navbar--light {
-    background-color: white;
-    color: black;
-}
 .navbar img{
     width: calc(10px + 10vw);
     height: 9.2vh;
+    border-radius: 30px;
 }
-.navbar__theme-toggle {
-    background: none;
-    color: black;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-}
-.navbar--dark .navbar__theme-icon {
+
+ .navbar__theme-icon {
     background-color: black;
     color: white;
 }

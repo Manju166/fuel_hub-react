@@ -4,9 +4,10 @@ import { Form, Input, Button, Select, Typography } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { useLoginHandler } from "./useLoginHandler";
+import { useLoginHandler } from "../hooks/useLoginHandler";
 import './style.css'
 import { GET_TENANTS } from "../graphql/TenantQuery";
+import { APP_URL } from "../../../constants/APP_URL";
 const { Option } = Select;
 const { Text } = Typography;
 
@@ -59,7 +60,7 @@ const Login = () => {
           label={<span>Password</span>}
           rules={[
             { required: true, message: "Please input your password!" },
-            { min: 8, message: "Password must be at least 8 characters long!" },
+            { min: 6, message: "Password must be at least 6 characters long!" },
           ]}
           required={false}
         >
@@ -77,7 +78,7 @@ const Login = () => {
 
         <Form.Item className="login__form-item login__register-link">
           <Text>
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account? <Link to={APP_URL.REGISTER}>Register</Link>
           </Text>
         </Form.Item>
       </Form>

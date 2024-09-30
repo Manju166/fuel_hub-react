@@ -4,28 +4,29 @@ import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import './style.css';
 import { useQuery } from "@apollo/client";
 import { GET_TENANTS } from "../../register/graphql/TenantQuery";
-import { useRegisterHandler } from "./useRegisterHandler";
+import { useRegisterHandler } from "../hooks/useRegisterHandler";
+import { APP_URL } from "../../../constants/APP_URL";
 
 const { Option } = Select;
 const { Text } = Typography;
 
 const Register = () => {
   const { data } = useQuery(GET_TENANTS);
-  const [form] = Form.useForm(); // Create a form instance
   const {
     handleRegister,
     registerLoading,
     registerError,
-  } = useRegisterHandler(form); // Pass form to the handler
+    emailError,
+    passwordError
+  } = useRegisterHandler(); 
 
   return (
     <div className="registration">
       <h2 className="registration__title">Register</h2>
       <Form
-        form={form} // Attach the form instance
         name="registration_form"
         initialValues={{ remember: true }}
-        onFinish={handleRegister} // Pass the form instance
+        onFinish={handleRegister} 
         layout="vertical"
         className="registration__form"
       >
@@ -50,6 +51,8 @@ const Register = () => {
           rules={[{ required: true, message: "Please input your email!" },
                   { type: "email", message: "The input is not a valid email!" }]}
           required={false}
+          validateStatus={emailError ? "error" : ""}
+          help={emailError} 
         >
           <Input
             prefix={<MailOutlined className="registration__icon" />}
@@ -60,9 +63,11 @@ const Register = () => {
         <Form.Item
           name="password"
           label={<span>Password</span>}
-          rules={[{ required: true, message: "Please input your password!" }]}
-          hasFeedback
+          rules={[{ required: true, message: "Please input your password!" },
+            { min: 6, message: "Password must be at least 6 characters long!" },
+          ]}
           required={false}
+
         >
           <Input.Password
             prefix={<LockOutlined className="registration__icon" />}
@@ -103,7 +108,7 @@ const Register = () => {
       </Form>
       <div className="registration__login">
         <Text>
-          Already have an account? <a href="/">Login</a>
+          Already have an account? <a href={APP_URL.LOGIN}>Login</a>
         </Text>
       </div>
     </div>

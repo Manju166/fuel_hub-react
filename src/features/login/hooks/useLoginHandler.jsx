@@ -9,9 +9,6 @@ export const useLoginHandler = () => {
     useMutation(LOGIN_MUTATION);
   const navigate = useNavigate();
 
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [tenantError, setTenantError] = useState("");
   const [tokenError, setTokenError] = useState("");
 
   useEffect(() => {
@@ -40,9 +37,6 @@ export const useLoginHandler = () => {
   };
 
   const handleLogin = async (values) => {
-    setEmailError("");
-    setPasswordError("");
-    setTenantError("");
     setTokenError("");
 
     try {
@@ -58,25 +52,11 @@ export const useLoginHandler = () => {
         localStorage.setItem("token", response.data.loginUser.token);
         navigate("/dashboard");
         toast.success("Logged in successfully!!");
-      }
-      else {
-        toast.error("Login failed:", response.data.loginUser.error);
+      } else {
+        console.log("Login failed:", response.data.loginUser.error);
       }
     } catch (err) {
-      toast.error("Error:", err.message);
-      if (err.message.includes("Invalid email")) {
-        setEmailError(
-          "Email does not match our records. Please check your email or register."
-        );
-      }
-      if (err.message.includes("Invalid password")) {
-        setPasswordError("Password is incorrect. Please check your password.");
-      }
-      if (err.message.includes("Invalid tenant")) {
-        setTenantError(
-          "Tenant ID is not registered. Please select a valid tenant."
-        );
-      }
+      console.log(`Login failed: ${err.message}`);
     }
   };
 
@@ -84,9 +64,6 @@ export const useLoginHandler = () => {
     handleLogin,
     loginLoading,
     loginError,
-    emailError,
-    passwordError,
-    tenantError,
     tokenError,
   };
 };

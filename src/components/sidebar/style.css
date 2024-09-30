@@ -1,58 +1,68 @@
+/* Sidebar container */
 .sidebarpage {
-    width: 220px;
-    height: 90vh;
-    box-shadow: 2px 0 50px rgba(6, 223, 6, 0.1);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    background-color: red;
-  }
- 
-  .sidebarpage__icon {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-  
-  .sidebarpage__content {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid #ccc;
-  }
-  
-  .sidebarpage__item {
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
+  width: 250px;
+  height: 100vh;
+  background-color: #2c3e50;
+  position: fixed;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
 
-  
-  .sidebarpage__link {
-    display: flex;
-    align-items: center;
-    color: inherit;
-    text-decoration: none;
-    gap: 20px;
-    padding: 10px;
-    border-radius: 16px;
+.sidebarpage__content {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarpage__item {
+  margin-bottom: 10px;
+}
+
+.sidebarpage__link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #ecf0f1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebarpage__link:hover {
+  background-color: #34495e;
+  border-radius: 20px;
+}
+
+.sidebarpage__link svg {
+  margin-right: 15px;
+  font-size: 18px;
+}
+
+.sidebarpage__text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ecf0f1;
+}
+
+.sidebarpage__link.active {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .sidebarpage {
+    width: 200px;
   }
-  .sidebarpage__link:hover, .active{
-    background-color: #82db82;
-    color: #000000;
+
+  .sidebarpage__link svg {
+    font-size: 16px;
   }
-  
+
   .sidebarpage__text {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 14px;
   }
-  
-  .sidebarpage__item--settings {
-    margin-top: auto;
-    padding: 15px 15px;
-    border-top: 1px solid #ccc;
-  }
-  
-  
+}
