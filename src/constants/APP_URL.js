@@ -1,8 +1,12 @@
 const APP_URL ={
-    GRAPHQL_URL : "https://9bde-113-199-229-102.ngrok-free.app/graphql",
+    GRAPHQL_URL : "https://8277-110-44-126-21.ngrok-free.app/graphql",
     LOGIN:"/",
     REGISTER:"/register",
-    DASHBOARD:'/dashboard',
-    CONSUMER:'/consumer'
+    DASHBOARD:'/*',
+    CONSUMER:'/dashboard/consumer',
+    CONSUMERBRANCH:'/consumerbranch/:consumerId',
+    PRODUCT:'/dashboard/product',
+    RESOURCE:'/dashboard/resource'
 }
 export {APP_URL};
+

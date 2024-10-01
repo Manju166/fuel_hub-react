@@ -25,16 +25,28 @@
 .sidebarpage__link {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  width: 70%;
+  margin: auto;
+  padding: 15px 10px;
   color: #ecf0f1;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 20px;
 }
 
 .sidebarpage__link:hover {
   background-color: #34495e;
   border-radius: 20px;
+}
+
+.sidebarpage__item.active .sidebarpage__link {
+  background-color: rgb(105, 134, 103);
+  border-radius: 20px;
+}
+
+.sidebarpage__text:active {
+  background-color: #1abc9c;
+  color: #fff;
 }
 
 .sidebarpage__link svg {
@@ -46,11 +58,6 @@
   font-size: 16px;
   font-weight: 500;
   color: #ecf0f1;
-}
-
-.sidebarpage__link.active {
-  background-color: #1abc9c;
-  color: #fff;
 }
 
 @media (max-width: 768px) {

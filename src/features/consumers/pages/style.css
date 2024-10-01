@@ -1,0 +1,43 @@
+.table-container {
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin: 10px;
+  }
+  
+  .show-branch-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .show-branch-button:hover {
+    background-color: #45a049;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  .action-buttons button {
+    margin-right: 5px;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .cancel {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .cancel:hover {
+    background-color: #d32f2f;
+  }
+  

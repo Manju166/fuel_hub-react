@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaTachometerAlt,
   FaCog,
@@ -12,6 +12,7 @@ import './style.css';
 
 function Sidebar() {
   const navigate = useNavigate();
+  const location = useLocation();  // Get the current location
 
   const items = [
     {
@@ -53,17 +54,23 @@ function Sidebar() {
   return (
     <div className="sidebarpage">
       <ul className="sidebarpage__content">
-        {items.map((item, index) => (
-          <li className="sidebarpage__item" key={index}>
-            <div
-              className="sidebarpage__link"
-              onClick={() => handleClick(item.key)}
+        {items.map((item, index) => {
+          const isActive = location.pathname === item.key; // Check if the item is active
+          return (
+            <li
+              className={`sidebarpage__item ${isActive ? "active" : ""}`}
+              key={index}
             >
-              {item.icon}
-              <span className="sidebarpage__text">{item.label}</span>
-            </div>
-          </li>
-        ))}
+              <div
+                className="sidebarpage__link"
+                onClick={() => handleClick(item.key)}
+              >
+                {item.icon}
+                <span className="sidebarpage__text">{item.label}</span>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

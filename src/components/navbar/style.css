@@ -15,7 +15,6 @@
 .navbar img{
     width: calc(10px + 10vw);
     height: 9.2vh;
-    border-radius: 30px;
 }
 
  .navbar__theme-icon {

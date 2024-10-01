@@ -1,0 +1,98 @@
+.consumer{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .table-container__add-customer-btn {
+    background-color: rgb(73, 199, 73);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+  }
+  
+  .table-container__add-customer-btn:hover {
+    background-color: rgb(115, 185, 115);
+  }
+  
+  .ag-theme-alpine.table-container {
+    height: 60vh;
+    position: relative;
+    margin: auto;
+  }
+  .action-buttons button {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #357abd;
+  }
+  .action-buttons button:hover{
+    color: green;
+  }
+  .show-branch-button{
+    background-color: transparent;
+    color: rgb(241, 83, 9);
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .consumer-modal {
+    width: 400px;
+    margin: 100px auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .modal-header h2 {
+    font-size: 24px;
+    color: #333;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .modal-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+  
+  .view-modal .modal-header {
+    border-bottom: none;
+  }
+  
+  .view-modal .modal-footer {
+    display: none;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .consumerheader{
+    display: flex;
+    justify-content: space-between;
+  }
+  .ag-theme-alpine.table-container{
+    width: 60%;
+    margin: auto;
+  }
+  
+  

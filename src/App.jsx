@@ -6,6 +6,7 @@ import Login from './features/login/page/Login'
 import Register from './features/register/page/Register'
 import './App.css'
 import { APP_URL } from './constants/APP_URL'
+import ConsumerBranch from './features/consumerBranch/pages/ConsumerBranch'
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +17,10 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path={APP_URL.DASHBOARD} element={<PageRoutes />} />
         </Route>
-        
+        <Route
+              path={APP_URL.CONSUMERBRANCH}
+              element={<ConsumerBranch />}
+            />
     </Routes>
   </BrowserRouter>
   )

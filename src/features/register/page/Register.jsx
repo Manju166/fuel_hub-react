@@ -17,7 +17,6 @@ const Register = () => {
     registerLoading,
     registerError,
     emailError,
-    passwordError
   } = useRegisterHandler(); 
 
   return (
