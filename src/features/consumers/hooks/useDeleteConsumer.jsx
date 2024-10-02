@@ -10,7 +10,7 @@ export const useDeleteConsumer = (refetch) => {
         const { data } = await deleteConsumer({ variables: { input: { id } } });
   
         if (data.deleteConsumer.success) {
-          refetch(); // Refetch consumers after deleting
+          refetch(); 
           console.log("Consumer deleted:", data.deleteConsumer.success);
         } else {
           console.error("Error deleting consumer:", data.deleteConsumer.errors);

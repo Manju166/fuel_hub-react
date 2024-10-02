@@ -6,7 +6,7 @@ export const useEditOutlet = (refetch, setIsModalOpen, setErrorMessage) => {
 
   const handleUpdate = async (formData) => {
     try {
-      await updateOutlet({
+      const { data } = await updateOutlet({
         variables: {
           outletDetails: {
             id: formData.id,
@@ -16,7 +16,6 @@ export const useEditOutlet = (refetch, setIsModalOpen, setErrorMessage) => {
           },
         },
       });
-
       refetch();
       setIsModalOpen(false);
     } catch (error) {
@@ -26,4 +25,3 @@ export const useEditOutlet = (refetch, setIsModalOpen, setErrorMessage) => {
 
   return handleUpdate;
 };
-

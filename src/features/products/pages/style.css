@@ -1,143 +1,69 @@
-.product{
-    display: flex;
-    justify-content: space-between;
-  }
-  .category{
-    display: flex;
-    justify-content: space-between;
-    width: 30%;
-  }
-  .category label, select{
-    height: 40px;
-    width: 80%;
-    padding: 10px 0;
-  }
-  .table-container__add-product-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .table-container__add-product-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .table-container {
-    font-family: Arial, sans-serif;
-  }
-  
-  .product-modal {
-    width: 30%;
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-header {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-  }
-  
-  .modal-header h2 {
-    margin: 0;
-    font-size: 18px;
-  }
-  
-  .error-message {
-    color: #ff0000;
-    font-size: 14px;
-    margin: 10px 0;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  select {
-    cursor: pointer;
-  }
-  
-  .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-  
-  .modal-footer button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .modal-footer button.cancel {
-    background-color: #6c757d;
-  }
-  
-  .modal-footer button:hover {
-    background-color: #0056b3;
-  }
-  
-  .modal-footer button.cancel:hover {
-    background-color: #5a6268;
-  }
-  
-  .action-buttons {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .action-buttons button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .action-buttons button:hover {
-    color: #007bff;
-  }
-  .product-status-available {
-    color: #28A745;
-    border: 1px dashed #28A745;
-    border-radius: 10px;
-  }
-  .product-status-out_of_stock {
-    color: #DC3545;
-    border: 1px dashed #DC3545;
-    border-radius: 10px;
-  }
-  .product-status-discontinued {
-    color: rgb(197, 223, 52);
-    border: 1px dashed rgb(197, 223, 52);
-    border-radius: 10px;
-  }
-  .product-status-default {
-    color: #FFFFFF;
-  }
+
+.products__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.products__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.products__category {
+  display: flex;
+  margin-right: 20px;
+}
+
+.products__label {
+  margin: 10px;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.products__select {
+  border-radius: 8px 8px 0 0;
+  padding: 8px;
+  border: none;
+  font-size: 16px;
+  background-color: #d2dad4;
+}
+
+.products__add-button {
+  padding: 13px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+ .products__modal{
+  width: 400px;
+  margin: 100px auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+} 
+.products__modal-header h2 {
+  font-size: 24px;
+  color: #333;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.ag-theme-alpine.table-container{
+  width: 60%;
+  margin: auto;
+}
+

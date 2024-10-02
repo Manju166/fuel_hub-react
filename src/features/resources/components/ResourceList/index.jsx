@@ -1,16 +1,13 @@
-// src/components/ResourceList.js
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import './style.css'
+
 const ResourceList = ({ resources, handleView, handleEdit, handleDelete }) => {
   const columnDefs = [
-    {
-      headerName: "Category",
-      field: "resourceCategory",
-      sortable: true,
-      filter: true,
-    },
+      { headerName: 'Name', field: 'name', filter: true, width:160 },
+    { headerName: 'Category', field: 'resourceCategory',filter: true, width:190 },
+    { headerName: 'Vehicle ID', field: 'vehicleId', filter: true, width:160  },
     {
       headerName: "Status",
       field: "resourceStatus",
@@ -30,33 +27,35 @@ const ResourceList = ({ resources, handleView, handleEdit, handleDelete }) => {
         </span>
       ),
     },
+    { headerName: 'Capacity', field: 'capacity',filter: true, width:110 },
+    { headerName: 'Unit', field: 'unit', filter: true, width:100 },
     {
       headerName: "Actions",
       field: "actions",
       cellRenderer: (params) => (
-        <div className="action-buttons">
-          <button onClick={() => handleView(params.data)}>
+        <div className="table__actions">
+          <button className="table__action-button table__action-button--view" onClick={() => handleView(params.data)}>
             <FaEye />
           </button>
-          <button onClick={() => handleEdit(params.data)}>
+          <button className="table__action-button table__action-button--edit" onClick={() => handleEdit(params.data)}>
             <FaEdit />
           </button>
-          <button onClick={() => handleDelete(params.data)}>
+          <button className="table__action-button table__action-button--delete" onClick={() => handleDelete(params.data)}>
             <FaTrash />
           </button>
         </div>
       ),
+      width: 140
     },
   ];
 
   return (
-    <div className="ag-theme-alpine table-container">
+    <div className="ag-theme-alpine table-container" style={{ width: '100%' }}>
       <AgGridReact
         rowData={resources}
         columnDefs={columnDefs}
         pagination={true}
         paginationPageSize={10}
-        paginationPageSizeSelector={[10, 20, 50]}
         domLayout="autoHeight"
       />
     </div>

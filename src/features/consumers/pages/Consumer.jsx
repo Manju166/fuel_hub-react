@@ -11,6 +11,7 @@ import {useEditConsumer} from '../hooks/useEditConsumer';
 import {useDeleteConsumer} from '../hooks/useDeleteConsumer';
 import './style.css'
 import { Form } from "antd";
+import { APP_URL } from "../../../constants/APP_URL";
 Modal.setAppElement("#root");
 
 function Consumer() {
@@ -58,8 +59,9 @@ function Consumer() {
   };
 
   const handleShowBranches = (consumerId) => {
-    navigate(`/consumerbranch/${consumerId}`);
+    navigate(`${APP_URL.CONSUMERBRANCH.replace(":consumerId", consumerId)}`);
   };
+  
 
 const handlePhoneNumberChange = (e) => {
   const value = e.target.value;
@@ -76,7 +78,7 @@ const handlePhoneNumberChange = (e) => {
     <>
       <h1>Consumer List</h1>
       <div className="consumer">
-        <button className="table-container__add-customer-btn" onClick={openAddModal}>
+        <button className="consumer__add-button" onClick={openAddModal}>
           Add Customer
         </button>
       </div>
@@ -97,10 +99,10 @@ const handlePhoneNumberChange = (e) => {
           className="consumer-modal"
         >
           <div className="modal-header">
-            <h2>{modalMode === "view" ? "View Consumer" : modalMode === "edit" ? "Edit Consumer" : "Add Consumer"}</h2>
+            <h2>{modalMode === "view" ? "" : modalMode === "edit" ? "Edit Consumer" : "Add Consumer"}</h2>
           </div>
           {modalMode === "view" ? (
-            <ConsumerView selectedConsumer={selectedConsumer} />
+            <ConsumerView selectedConsumer={selectedConsumer}  onClose={() => setIsModalOpen(false)}/>
           ) : (
             <ConsumerForm
               form={form}

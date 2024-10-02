@@ -1,34 +1,93 @@
-/* src/styles/resourceForm.css */
 .resource-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .resource-form label {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .resource-form select {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .modal-footer button {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .modal-footer button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Space between fields */
+}
+
+.form-group 
+.capacity_input{
+  width: 62%;
+}
+.resource-form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.resource-form input{
+  width: 93%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.2s ease;
+}
+.resource-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.2s ease;
+}
+
+.resource-form input:focus,
+.resource-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.resource-form .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.resource-form button {
+  width: 90px;
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+}
+
+.cancel-button:hover {
+  background-color: #aa656b; 
+}
+.add-update-button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-update-button:hover {
+  background-color: #609b62;
+}
+

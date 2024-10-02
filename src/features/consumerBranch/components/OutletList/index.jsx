@@ -1,34 +1,31 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import './style.css'
-function OutletList({ outlets, handleView, handleEdit, handleDelete }) {
+import { FaEdit, FaTrash } from "react-icons/fa";
+import './style.css';
+
+function OutletList({ outlets, handleEdit, handleDelete }) {
   const columnDefs = [
-    { headerName: "ID", field: "id", sortable: true, filter: true, width: 70 },
-    { headerName: "Name", field: "name", sortable: true, filter: true },
-    { headerName: "Branch Address", field: "address", sortable: true, filter: true },
+    { headerName: "Name", field: "name", sortable: true, filter: true, width: 250 },
+    { headerName: "Branch Address", field: "address", sortable: true, filter: true, width: 250 },
     {
       headerName: "Actions",
       field: "actions",
       cellRenderer: (params) => (
-        <div className="action-buttons">
-          <button onClick={() => handleView(params.data)}>
-            <FaEye />
-          </button>
-          <button onClick={() => handleEdit(params.data)}>
+        <div className="table__actions">
+          <button className="table__action-button table__action-button--edit" onClick={() => handleEdit(params.data)}>
             <FaEdit />
           </button>
-          <button onClick={() => handleDelete(params.data)}>
+          <button className="table__action-button table__action-button--delete" onClick={() => handleDelete(params.data)}>
             <FaTrash />
           </button>
         </div>
       ),
-      width:300
+      width: 210,
     },
   ];
 
   return (
-    <div className="ag-theme-alpine table-container">
+    <div className="table-container ag-theme-alpine">
       <AgGridReact
         rowData={outlets}
         columnDefs={columnDefs}

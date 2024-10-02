@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input } from "antd";
 import "./style.css";
 
 const ConsumerForm = ({
@@ -44,23 +44,22 @@ const ConsumerForm = ({
           />
         </Form.Item>
 
-
         <Form.Item
-  label="Email"
-  name="email"
-  rules={[
-    { required: true, message: "Please enter the email" },
-    { type: "email", message: "Please enter a valid email" },
-  ]}
-  required={false}
-  validateStatus={emailError ? "error" : ""}
-          help={emailError} 
->
-  <Input
-    value={formData.email}
-    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-  />
-</Form.Item>
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: "Please enter the email" },
+            { type: "email", message: "Please enter a valid email" },
+          ]}
+          required={false}
+          validateStatus={emailError ? "error" : ""}
+          help={emailError}
+        >
+          <Input
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          />
+        </Form.Item>
 
         <Form.Item
           label="Address"
@@ -77,33 +76,36 @@ const ConsumerForm = ({
         </Form.Item>
 
         <Form.Item
-  label="Phone Number"
-  name="phoneNumber"
-  rules={[
-    { required: true, message: "Please enter the phone number" },
-    {
-      pattern: /^\d{10}$/,
-      message: "Phone number must be exactly 10 digits",
-    },
-  ]}
-  required={false}
-  validateStatus={phoneError ? "error" : ""}
-          help={phoneError} 
->
-  <Input
-    value={formData.phoneNumber}
-    onChange={handlePhoneNumberChange}
-  />
-</Form.Item>
+          label="Phone Number"
+          name="phoneNumber"
+          rules={[
+            { required: true, message: "Please enter the phone number" },
+            {
+              pattern: /^\d{10}$/,
+              message: "Phone number must be exactly 10 digits",
+            },
+          ]}
+          required={false}
+          validateStatus={phoneError ? "error" : ""}
+          help={phoneError}
+        >
+          <Input
+            value={formData.phoneNumber}
+            onChange={handlePhoneNumberChange}
+          />
+        </Form.Item>
 
         <Form.Item>
-          <div className="modal-footer">
-            <button type="primary" htmlType="submit">
+          <div className="form-container__footer">
+            <button
+              type="submit"
+              className="form-container__button form-container__button--primary"
+            >
               {modalMode === "add" ? "Add" : "Update"}
             </button>
             <button
-              type="default"
-              className="cancel"
+              type="button"
+              className="form-container__button form-container__button--cancel"
               onClick={() => setIsModalOpen(false)}
             >
               Cancel

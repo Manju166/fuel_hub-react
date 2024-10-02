@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import Modal from "react-modal";
-import { useAddProduct } from '../hooks/useAddProduct';
-import { useEditProduct } from '../hooks/useEditProduct';
-import { useDeleteProduct } from '../hooks/useDeleteProduct';
+import { useAddProduct } from "../hooks/useAddProduct";
+import { useEditProduct } from "../hooks/useEditProduct";
+import { useDeleteProduct } from "../hooks/useDeleteProduct";
 import { GET_PRODUCTS } from "../graphql/ProductQuery";
 import ProductList from "../components/ProductList";
 import ProductView from "../components/ProductView";
 import ProductForm from "../components/ProductForm";
-import './style.css';
+import "./style.css";
 Modal.setAppElement("#root");
 
 const Products = () => {
@@ -25,8 +25,16 @@ const Products = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const handleAdd = useAddProduct(refetch, setIsModalOpen, setErrorMessage);
-  const handleUpdate = useEditProduct(refetch, setIsModalOpen, setErrorMessage);
+  const handleAdd = useAddProduct(
+    refetch,
+    () => setIsModalOpen(false),
+    setErrorMessage
+  );
+  const handleUpdate = useEditProduct(
+    refetch,
+    () => setIsModalOpen(false),
+    setErrorMessage
+  );
   const handleDelete = useDeleteProduct(refetch);
 
   const categoryOptions = [
@@ -47,11 +55,12 @@ const Products = () => {
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setFormData({
+      id: product.id,
       name: product.name,
       category: product.category,
       status: product.status,
       unit: product.unit,
-      mode: "edit", 
+      mode: "edit",
     });
     setModalMode("edit");
     setIsModalOpen(true);
@@ -66,9 +75,18 @@ const Products = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setFormData({ name: "", category: "", status: "", unit: "", mode: "add" }); // Reset form data
+    setFormData({ name: "", category: "", status: "", unit: "", mode: "add" });
     setSelectedProduct(null);
-    setErrorMessage(""); // Clear any previous error message
+    setErrorMessage("");
+  };
+
+  const handleSubmit = () => {
+    console.log("Form submitted", formData);
+    if (formData.mode === "add") {
+      handleAdd(formData);
+    } else {
+      handleUpdate(formData);
+    }
   };
 
   const filteredProducts = selectedCategory
@@ -81,16 +99,17 @@ const Products = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <>
-      <h1>Product List</h1>
-      <div className="product">
-        <div className="category">
-          <label>Select Category:</label>
+    <div className="products">
+      <h1 className="products__title">Product List</h1>
+      <div className="products__controls">
+        <div className="products__category">
+          <label className="products__label">Select Category:</label>
           <select
             name="productCategory"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             required
+            className="products__select"
           >
             {categoryOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -99,10 +118,7 @@ const Products = () => {
             ))}
           </select>
         </div>
-        <button
-          className="table-container__add-product-btn"
-          onClick={openAddModal}
-        >
+        <button className="products__add-button" onClick={openAddModal}>
           Add Product
         </button>
       </div>
@@ -118,15 +134,30 @@ const Products = () => {
         <Modal
           isOpen={isModalOpen}
           onRequestClose={handleCancel}
-          contentLabel={modalMode === "view" ? "View Product" : modalMode === "edit" ? "Edit Product" : "Add Product"}
-          className="product-modal"
+          contentLabel={
+            modalMode === "view"
+              ? "View Product"
+              : modalMode === "edit"
+              ? "Edit Product"
+              : "Add Product"
+          }
+          className="products__modal"
         >
-          <div className="modal-header">
-            <h2>{modalMode === "view" ? "View Product" : modalMode === "edit" ? "Edit Product" : "Add Product"}</h2>
+          <div className="products__modal-header">
+            <h2 className="products__modal-title">
+              {modalMode === "view"
+                ? " "
+                : modalMode === "edit"
+                ? "Edit Product"
+                : "Add Product"}
+            </h2>
           </div>
 
           {modalMode === "view" ? (
-            <ProductView selectedProduct={selectedProduct} />
+            <ProductView
+              selectedProduct={selectedProduct}
+              onClose={() => setIsModalOpen(false)}
+            />
           ) : (
             <ProductForm
               formData={formData}
@@ -134,15 +165,14 @@ const Products = () => {
               categoryOptions={categoryOptions}
               statusOptions={statusOptions}
               unitOptions={unitOptions}
-              handleSubmit={modalMode === "edit" ? handleUpdate : handleAdd}
+              handleSubmit={handleSubmit}
               errorMessage={errorMessage}
-              handleCancel={handleCancel} 
+              handleCancel={handleCancel}
             />
           )}
-          
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 

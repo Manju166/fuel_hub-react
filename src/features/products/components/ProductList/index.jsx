@@ -36,17 +36,17 @@ const ProductList = ({ products, handleView, handleEdit, handleDelete }) => {
           headerName: "Actions",
           field: "actions",
           cellRenderer: (params) => (
-            <div className="action-buttons">
-              <button onClick={() => handleView(params.data)}>
-                <FaEye />
-              </button>
-              <button onClick={() => handleEdit(params.data)}>
-                <FaEdit />
-              </button>
-              <button onClick={() => handleDelete(params.data)}>
-                <FaTrash />
-              </button>
-            </div>
+            <div className="table__actions">
+            <button className="table__action-button table__action-button--view" onClick={() => handleView(params.data)}>
+              <FaEye />
+            </button>
+            <button className="table__action-button table__action-button--edit" onClick={() => handleEdit(params.data)}>
+              <FaEdit />
+            </button>
+            <button className="table__action-button table__action-button--delete" onClick={() => handleDelete(params.data)}>
+              <FaTrash />
+            </button>
+          </div>
           ),
         },
       ];

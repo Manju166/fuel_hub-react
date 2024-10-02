@@ -60,9 +60,6 @@ function Resource() {
         >
           <div className="modal-header">
             <h2>{modalMode === "view" ? "View Resource" : modalMode === "edit" ? "Edit Resource" : "Add Resource"}</h2>
-            <button className="close-modal-btn" onClick={() => setIsModalOpen(false)}>
-              &times;
-            </button>
           </div>
           {modalMode === "view" ? (
             <ResourceView selectedResource={selectedResource} />

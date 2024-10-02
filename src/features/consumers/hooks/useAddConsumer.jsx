@@ -13,7 +13,6 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
     setPhoneError(null);
     let errors = {};
 
-    // Frontend validation
     if (!formData.name.trim()) {
       errors.name = "Name cannot be empty.";
     }
@@ -34,7 +33,6 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
       errors.phoneNumber = "Phone number must be exactly 10 digits.";
     }
 
-    // If frontend errors, set the error messages and return early
     if (Object.keys(errors).length > 0) {
       setErrorMessages(errors);
       return;
@@ -62,8 +60,7 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
           error.toLowerCase().includes("phone number")
         );
 
-        // Display backend validation errors
-        if (form) { // Check if form is defined
+        if (form) { 
           if (emailError) {
             setEmailError(emailError);
             form.setFields([

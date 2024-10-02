@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { AgGridReact } from "ag-grid-react";
 import Modal from "react-modal";
 import { GET_OUTLETS } from "../graphql/ConsumerBranchQuery";
 import { useAddOutlet } from "../hooks/useAddOutlet";
 import { useEditOutlet } from "../hooks/useEditOutlet";
 import { useDeleteOutlet } from "../hooks/useDeleteOutlet";
 import OutletList from "../components/OutletList";
-import OutletView from "../components/OutletView";
 import OutletForm from "../components/OutletForm";
-import './style.css'
+import './style.css';
 import { APP_URL } from "../../../constants/APP_URL";
 Modal.setAppElement("#root");
 
@@ -18,8 +16,7 @@ function ConsumerBranch() {
   const { consumerId } = useParams();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState("view");
-  const [selectedBranch, setSelectedBranch] = useState(null);
+  const [modalMode, setModalMode] = useState("add"); 
   const [formData, setFormData] = useState({ name: "", address: "", consumerId: "" });
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -41,6 +38,17 @@ function ConsumerBranch() {
     setErrorMessage("");
   };
 
+  const openEditModal = (branch) => {
+    setFormData({
+      id: branch.id,
+      name: branch.name,
+      address: branch.address,
+      consumerId,
+    });
+    setModalMode("edit");
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="consumerBranch">
       <h1>Outlet List for Consumer {consumerId}</h1>
@@ -56,8 +64,7 @@ function ConsumerBranch() {
 
       <OutletList
         outlets={data.outlets.consumerOutlets}
-        handleView={setSelectedBranch}
-        handleEdit={setSelectedBranch}
+        handleEdit={openEditModal}
         handleDelete={handleDelete}
       />
 
@@ -65,28 +72,24 @@ function ConsumerBranch() {
         <Modal
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
-          contentLabel={modalMode === "view" ? "View Outlet" : modalMode === "edit" ? "Edit Outlet" : "Add Outlet"}
+          contentLabel={modalMode === "edit" ? "Edit Outlet" : "Add Outlet"}
           className="consumer-modal"
         >
           <div className="modal-header">
-            <h2>{modalMode === "view" ? "View Outlet" : modalMode === "edit" ? "Edit Outlet" : "Add Outlet"}</h2>
+            <h2>{modalMode === "edit" ? "Edit Outlet" : "Add Outlet"}</h2>
           </div>
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-          {modalMode === "view" ? (
-            <OutletView selectedBranch={selectedBranch} />
-          ) : (
-            <OutletForm
-              formData={formData}
-              setFormData={setFormData}
-              consumerId={consumerId}
-              handleAdd={handleAdd}
-              handleUpdate={handleUpdate}
-              modalMode={modalMode}
-              setIsModalOpen={setIsModalOpen}
-            />
-          )}
+          <OutletForm
+            formData={formData}
+            setFormData={setFormData}
+            consumerId={consumerId}
+            handleAdd={handleAdd}
+            handleUpdate={handleUpdate}
+            modalMode={modalMode}
+            setIsModalOpen={setIsModalOpen}
+          />
         </Modal>
       )}
     </div>

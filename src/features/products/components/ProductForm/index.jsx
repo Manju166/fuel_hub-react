@@ -1,25 +1,38 @@
 import React from "react";
-import './style.css'
-const ProductForm = ({ formData, setFormData, categoryOptions, statusOptions, unitOptions, handleSubmit, errorMessage, handleCancel }) => {
+import './style.css';
+
+const ProductForm = ({
+  formData,
+  setFormData,
+  categoryOptions,
+  statusOptions,
+  unitOptions,
+  handleSubmit,
+  errorMessage,
+  handleCancel,
+}) => {
   return (
-    
-    <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div>
-        <label>Name</label>
+    <form className="product-form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+      {errorMessage && <p className="product-form__error-message">{errorMessage}</p>}
+      
+      <div className="product-form__field">
+        <label className="product-form__label">Name</label>
         <input
+          className="product-form__input"
           type="text"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          required
+          
         />
       </div>
-      <div>
-        <label>Category</label>
+      
+      <div className="product-form__field">
+        <label className="product-form__label">Category</label>
         <select
+          className="product-form__select"
           value={formData.category}
           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-          required
+          
         >
           {categoryOptions.map((category) => (
             <option key={category.value} value={category.value}>
@@ -28,12 +41,14 @@ const ProductForm = ({ formData, setFormData, categoryOptions, statusOptions, un
           ))}
         </select>
       </div>
-      <div>
-        <label>Status</label>
+      
+      <div className="product-form__field">
+        <label className="product-form__label">Status</label>
         <select
+          className="product-form__select"
           value={formData.status}
           onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-          required
+          
         >
           <option value="" disabled>
             Select status
@@ -45,12 +60,13 @@ const ProductForm = ({ formData, setFormData, categoryOptions, statusOptions, un
           ))}
         </select>
       </div>
-      <div>
-        <label>Unit</label>
+      
+      <div className="product-form__field">
+        <label className="product-form__label">Unit</label>
         <select
+          className="product-form__select"
           value={formData.unit}
           onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
-          required
         >
           <option value="" disabled>
             Select unit
@@ -62,11 +78,12 @@ const ProductForm = ({ formData, setFormData, categoryOptions, statusOptions, un
           ))}
         </select>
       </div>
-      <div className="modal-buttons">
-        <button type="submit">
-          {formData.mode === "add" ? "Add" : "Update"} Product
+
+      <div className="product-form__buttons">
+        <button type="submit" className="product-form__button--primary">
+          {formData.mode === "add" ? "Add" : "Update"} 
         </button>
-        <button type="button" onClick={handleCancel}>
+        <button type="button" className="product-form__button--cancel" onClick={handleCancel}>
           Cancel
         </button>
       </div>

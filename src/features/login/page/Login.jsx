@@ -70,9 +70,10 @@ const Login = () => {
           />
         </Form.Item>
 
-        <Button type="primary" htmlType="submit" block loading={loginLoading}>
-          Login
-        </Button>
+        <Button type="primary" htmlType="submit" className="login__button" block loading={loginLoading}>
+  Login
+</Button>
+
 
         {loginError && <p>Error: {loginError.message}</p>}
 

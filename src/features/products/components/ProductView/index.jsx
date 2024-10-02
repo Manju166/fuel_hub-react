@@ -1,9 +1,16 @@
-// src/components/ProductView.js
 import React from "react";
+import { FaTimes } from "react-icons/fa"; 
+import './style.css';
 
-const ProductView = ({ selectedProduct }) => {
+const ProductView = ({ selectedProduct, onClose }) => {
   return (
-    <div>
+    <div className="product-view">
+      <div className="product-view__header">
+        <h2>Product Details</h2>
+        <button className="product-view__close" onClick={onClose}>
+          <FaTimes />
+        </button>
+      </div>
       <p>
         <strong>Name:</strong> {selectedProduct?.name}
       </p>

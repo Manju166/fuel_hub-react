@@ -37,7 +37,7 @@ function OutletForm({ formData, setFormData, consumerId, handleAdd, handleUpdate
             <button
               className="outlet-form__button outlet-form__button--update"
               type="button"
-              onClick={() => handleUpdate(formData)}
+              onClick={() => handleUpdate(formData,consumerId)}
             >
               Update
             </button>

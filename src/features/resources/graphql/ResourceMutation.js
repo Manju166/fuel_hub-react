@@ -1,38 +1,44 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const CREATE_RESOURCE = gql`
- mutation CreateResources($resourceInput: ResourceInput!){
-  createResource(input:{resourceInput: $resourceInput}){
-    resource{
-      tenantId
-      resourceCategory
-      resourceStatus
+  mutation CreateResources($resourceInput: ResourceInput!) {
+    createResource(input: { resourceInput: $resourceInput }) {
+      resource {
+        tenantId
+        resourceCategory
+        resourceStatus
+        name
+        capacity
+        unit
+        vehicleId
+        id
+      }
+      errors
     }
-    errors
   }
-}
 `;
 
 export const UPDATE_RESOURCE = gql`
- mutation UpdateResource($resource: ResourceInput!){
-  updateResource(input:{resource: $resource}){
-    resource{
-      tenantId
-      resourceStatus
-      resourceCategory
+  mutation UpdateResource($resource: ResourceInput!) {
+    updateResource(input: { resource: $resource }) {
+      resource {
+        tenantId
+        resourceStatus
+        resourceCategory
+        unit
+        name
+        capacity
+      }
     }
   }
-}
 `;
+
 
 export const DELETE_RESOURCE = gql`
- mutation DeleteResources($id: ID!){
-  deleteResource(input:{id: $id})
-  {
-    errors
-    success
+  mutation DeleteResource($id: ID!) {
+    deleteResource(id: $id) {
+      success
+      errors
+    }
   }
-}
 `;
-
-

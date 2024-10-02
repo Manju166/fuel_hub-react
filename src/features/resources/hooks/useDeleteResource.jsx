@@ -1,24 +1,18 @@
-import { useMutation } from "@apollo/client";
-import { DELETE_RESOURCE } from "../graphql/ResourceMutation";
+// deleteResourceHandler.js
+import { useMutation } from '@apollo/client';
+import { DELETE_RESOURCE } from '../graphql/ResourceMutation';
 
-export const useDeleteResource = (refetch) => {
-    const [deleteResource] = useMutation(DELETE_RESOURCE);
-  
-    const handleDelete = async (resource) => {
-      try {
-        const { data } = await deleteResource({ variables: { id: resource.id } });
-        if (data.deleteResource.success) {
-          refetch();
-        } else {
-          console.error(
-            "Error deleting resource:",
-            data.deleteResource.errors.join(", ")
-          );
-        }
-      } catch (error) {
-        console.error("Error deleting resource:", error);
-      }
-    };
-  
-    return handleDelete;
+export const useDeleteResource = () => {
+  const [deleteResource, { loading, error }] = useMutation(DELETE_RESOURCE);
+
+  const deleteResourceHandler = async (id) => {
+    try {
+      const { data } = await deleteResource({ variables: { id } });
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  return { deleteResourceHandler, loading, error };
+};

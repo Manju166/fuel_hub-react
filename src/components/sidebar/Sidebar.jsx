@@ -12,8 +12,7 @@ import './style.css';
 
 function Sidebar() {
   const navigate = useNavigate();
-  const location = useLocation();  // Get the current location
-
+  const location = useLocation(); 
   const items = [
     {
       label: "Dashboard",
@@ -55,7 +54,7 @@ function Sidebar() {
     <div className="sidebarpage">
       <ul className="sidebarpage__content">
         {items.map((item, index) => {
-          const isActive = location.pathname === item.key; // Check if the item is active
+          const isActive = location.pathname === item.key; 
           return (
             <li
               className={`sidebarpage__item ${isActive ? "active" : ""}`}

@@ -99,7 +99,7 @@ const Register = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" block loading={registerLoading}>
+          <Button type="primary" htmlType="submit" className="registration__button" block loading={registerLoading}>
             Register
           </Button>
           {registerError && <p>Error: {registerError.message}</p>}

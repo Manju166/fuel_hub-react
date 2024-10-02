@@ -1,34 +1,18 @@
-// src/hooks/ResourceHandler.js
-import { useMutation } from "@apollo/client";
-import { CREATE_RESOURCE } from "../graphql/ResourceMutation";
+// addResourceHandler.js
+import { useMutation } from '@apollo/client';
+import { CREATE_RESOURCE } from '../graphql/ResourceMutation';
 
-export const useAddResource = (refetch, setIsModalOpen, setErrorMessage) => {
-  const [createResource] = useMutation(CREATE_RESOURCE);
+export const useAddResource = () => {
+  const [createResource, { loading, error }] = useMutation(CREATE_RESOURCE);
 
-  const handleAdd = async (formData) => {
-    if (!formData.resourceCategory.trim() || !formData.resourceStatus.trim()) {
-      setErrorMessage("All fields are required.");
-      return;
-    }
-
+  const addResourceHandler = async (resourceInput) => {
     try {
-      const { data } = await createResource({
-        variables: { resourceInput: formData },
-      });
-      if (data.createResource.resource) {
-        refetch();
-        setIsModalOpen(false);
-        setErrorMessage("");
-      } else {
-        setErrorMessage(data.createResource.errors.join(", "));
-      }
-    } catch (error) {
-      console.error("Error adding resource:", error);
+      const { data } = await createResource({ variables: { resourceInput } });
+      return data;
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  return handleAdd;
+  return { addResourceHandler, loading, error };
 };
-
-
-

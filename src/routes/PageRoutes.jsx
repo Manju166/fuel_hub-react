@@ -29,11 +29,6 @@ function PageRoutes() {
             <Route path={APP_URL.CONSUMER} element={<Consumer/>}/>
             <Route path={APP_URL.PRODUCT} element={<Products/>}/>
             <Route path={APP_URL.RESOURCE} element={<Resource/>}/>
-            {/* <Route path="product" element={<Products />} />
-            <Route path="consumer" element={<Consumer />} />
-            <Route path="resource" element={<Resource />} />
-            <Route path="orderList" element={<Order />} />
-            <Route path="order" element={<Order />} /> */}
           </Routes>
         </div>
       </div>

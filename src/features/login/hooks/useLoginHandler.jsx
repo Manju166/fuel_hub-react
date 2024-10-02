@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LOGIN_MUTATION from "../graphql/LoginMutation";
 import { toast } from "react-toastify";
-
+import { APP_URL } from "../../../constants/APP_URL";
 export const useLoginHandler = () => {
   const [login, { loading: loginLoading, error: loginError }] =
     useMutation(LOGIN_MUTATION);
@@ -19,7 +19,7 @@ export const useLoginHandler = () => {
         const isValidToken = validateToken(token);
 
         if (isValidToken) {
-          navigate("/dashboard");
+        navigate(`${APP_URL.DASHBOARD}`);
         } else {
           setTokenError("Invalid token found. Please log in again.");
           localStorage.removeItem("token");
@@ -50,8 +50,8 @@ export const useLoginHandler = () => {
 
       if (response.data.loginUser) {
         localStorage.setItem("token", response.data.loginUser.token);
-        navigate("/dashboard");
-        toast.success("Logged in successfully!!");
+        navigate(`${APP_URL.DASHBOARD}`);
+        toast.success("Welcome to dashboard!!");
       } else {
         console.log("Login failed:", response.data.loginUser.error);
       }
