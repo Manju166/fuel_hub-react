@@ -9,7 +9,7 @@ const ConsumerList = ({ data, handleView, handleEdit, handleDelete, handleShowBr
   const columnDefs = [
     { headerName: "Name", field: "name", sortable: true, filter: true, width: 205 },
     { headerName: "Address", field: "address", sortable: true, filter: true },
-    { headerName: "Email", field: "email", sortable: true, filter: true, width: 210 },
+    { headerName: "Email", field: "email", sortable: true, filter: true, width: 224 },
     { headerName: "Phone no.", field: "phoneNumber", sortable: true, filter: true, width: 145 },
     {
       headerName: "Actions",
@@ -41,9 +41,11 @@ const ConsumerList = ({ data, handleView, handleEdit, handleDelete, handleShowBr
 
   return (
     <div className="ag-theme-alpine table-container" style={{ width: "100%" }}>
-      <AgGridReact rowData={data.consumers} columnDefs={columnDefs}
+      <AgGridReact rowData={data.consumers} 
+      columnDefs={columnDefs}
        pagination={true}
-        paginationPageSize={10} />
+        paginationPageSize={10}
+        paginationPageSizeSelector={false} />
     </div>
   );
 };

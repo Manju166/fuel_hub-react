@@ -16,11 +16,11 @@ const ResourceForm = ({
   const { Option } = Select;
 
   const handleAdd = () => {
-    handleSubmit(formData); // Submit the form for adding a resource
+    handleSubmit(formData);
   };
 
   const handleUpdate = () => {
-    handleSubmit(formData); // Submit the form for updating a resource
+    handleSubmit(formData); 
   };
 
   return (

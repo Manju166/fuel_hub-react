@@ -17,10 +17,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path={APP_URL.DASHBOARD} element={<PageRoutes />} />
         </Route>
-        <Route
-              path={APP_URL.CONSUMERBRANCH}
-              element={<ConsumerBranch />}
-            />
+       
     </Routes>
   </BrowserRouter>
   )

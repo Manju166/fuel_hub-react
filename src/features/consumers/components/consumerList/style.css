@@ -1,30 +1,4 @@
-.consumer{
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .table-container__add-customer-btn {
-    background-color: rgb(73, 199, 73);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-  }
-  
-  .table-container__add-customer-btn:hover {
-    background-color: rgb(115, 185, 115);
-  }
-  
-  .ag-theme-alpine.table-container {
-    height: 65vh;
-    position: relative;
-    margin: auto;
-  }
+
   .table__actions button {
     padding: 10px;
     background-color: transparent;
@@ -33,7 +7,7 @@
     color: #357abd;
   }
   .action-buttons button:hover{
-    color: green;
+    color: rgb(1, 139, 1);
   }
   .show-branch-button{
     background-color: transparent;
@@ -83,9 +57,5 @@
     display: flex;
     justify-content: space-between;
   }
-  .ag-theme-alpine.table-container{
-    width: 60%;
-    margin: auto;
-  }
-  
+
   

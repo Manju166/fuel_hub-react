@@ -31,6 +31,8 @@
 }
 
  .products__modal{
+  position: relative;
+  top: 40px;
   width: 400px;
   margin: 30px auto;
   background: #fff;

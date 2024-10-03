@@ -3,7 +3,7 @@ import { CREATE_CONSUMER } from "../graphql/ConsumerMutation";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) => {
+export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages) => {
   const [createConsumer] = useMutation(CREATE_CONSUMER);
   const [emailError, setEmailError] = useState(null);
   const [phoneError, setPhoneError] = useState(null);
@@ -13,20 +13,18 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
     setPhoneError(null);
     let errors = {};
 
+    // Basic form validation
     if (!formData.name.trim()) {
       errors.name = "Name cannot be empty.";
     }
-
     if (!formData.address.trim()) {
       errors.address = "Address cannot be empty.";
     }
-
     if (!formData.email.trim()) {
       errors.email = "Email cannot be empty.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Invalid email address.";
     }
-
     if (!formData.phoneNumber.trim()) {
       errors.phoneNumber = "Phone number cannot be empty.";
     } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
@@ -38,6 +36,7 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
       return;
     }
 
+    // GraphQL mutation
     try {
       const { data } = await createConsumer({
         variables: {
@@ -50,50 +49,29 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
         },
       });
 
-      const backendErrors = data?.createConsumer?.errors;
-      if (backendErrors && backendErrors.length > 0) {
-        const emailError = backendErrors.find((error) =>
-          error.toLowerCase().includes("email")
-        );
-        const phoneError = backendErrors.find((error) =>
-          error.toLowerCase().includes("phone number")
-        );
-
-        if (form) { 
-          if (emailError) {
-            setEmailError(emailError);
-            form.setFields([
-              {
-                name: "email",
-                errors: [emailError],
-              },
-            ]);
-          }
-          if (phoneError) {
-            setPhoneError(phoneError);
-            form.setFields([
-              {
-                name: "phoneNumber",
-                errors: [phoneError],
-              },
-            ]);
-          }
-        } else {
-          toast.error("Failed! to add consumer List");
-        }
-      } else {
+      if (data.createConsumer.consumer) {
         refetch();
         setIsModalOpen(false);
-        setErrorMessages({});
-        toast.success("Consumer created successfully!");
+        setErrorMessages("");
+      } else {
+        console.error("Error adding consumer:", data.createConsumer.errors);
       }
     } catch (error) {
+      // Process server validation errors
+      const errorMessage = error.message || "Error adding consumer";
+      
+      if (errorMessage.includes("Email has already taken")) {
+        setEmailError("Email has already been taken.");
+      }
+      if (errorMessage.includes("Phone number already used")) {
+        setPhoneError("Phone number has already been used.");
+      }
+      
       console.error("Error adding consumer:", error);
-      setErrorMessages({
-        general: "An unexpected error occurred. Please try again.",
-      });
     }
   };
 
   return handleAdd;
 };
+
+

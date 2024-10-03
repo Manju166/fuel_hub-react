@@ -1,12 +1,11 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import './style.css';
 
 function OutletList({ outlets, handleEdit, handleDelete }) {
   const columnDefs = [
-    { headerName: "Name", field: "name", sortable: true, filter: true, width: 250 },
-    { headerName: "Branch Address", field: "address", sortable: true, filter: true, width: 250 },
+    { headerName: "Name", field: "name", sortable: true, filter: true, width:400 },
+    { headerName: "Branch Address", field: "address", sortable: true, filter: true, width:400},
     {
       headerName: "Actions",
       field: "actions",
@@ -19,22 +18,20 @@ function OutletList({ outlets, handleEdit, handleDelete }) {
             <FaTrash />
           </button>
         </div>
-      ),
-      width: 210,
+      ),width:220
     },
   ];
 
   return (
-    <div className="table-container ag-theme-alpine">
       <AgGridReact
         rowData={outlets}
         columnDefs={columnDefs}
         pagination={true}
         paginationPageSize={10}
         domLayout="autoHeight"
-        className="table"
+        className="table ag-theme-alpine"
+        style={{ width: "100%" }}
       />
-    </div>
   );
 }
 

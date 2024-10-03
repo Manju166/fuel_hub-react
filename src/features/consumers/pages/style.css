@@ -4,7 +4,13 @@
   margin-bottom: 10px;
 }
 
-.consumer-modal {
-  color: white; 
-  margin-top: 30px;
-}
+.consumer-modal{
+  position: relative;
+  top: 40px;
+  width: 400px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+} 

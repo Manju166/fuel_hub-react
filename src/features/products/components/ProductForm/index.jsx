@@ -1,6 +1,5 @@
 import React from "react";
 import ReusableForm from "../../../../components/FormWrapper/ReusableForm"; 
-import './style.css'
 const ProductForm = ({
   formData,
   setFormData,

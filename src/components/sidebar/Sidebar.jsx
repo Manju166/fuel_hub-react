@@ -20,11 +20,6 @@ function Sidebar() {
       key: "/dashboard/",
     },
     {
-      label: "Order",
-      icon: <FaListUl />,
-      key: "/dashboard/order",
-    },
-    {
       label: "Products",
       icon: <FaBox />,
       key: "/dashboard/product",
@@ -38,6 +33,11 @@ function Sidebar() {
       label: "Consumers",
       icon: <FaUserFriends />,
       key: "/dashboard/consumer",
+    },
+    {
+      label: "Order",
+      icon: <FaListUl />,
+      key: "/dashboard/order",
     },
     {
       label: "Settings",

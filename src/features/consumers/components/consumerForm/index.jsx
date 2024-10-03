@@ -33,7 +33,7 @@ const ConsumerForm = ({
         { required: true, message: "Please enter the email" },
         { type: "email", message: "Please enter a valid email" },
       ],
-      error: emailError,
+      error: emailError, 
     },
     {
       name: "address",
@@ -50,7 +50,7 @@ const ConsumerForm = ({
           message: "Phone number must be exactly 10 digits",
         },
       ],
-      error: phoneError,
+      error: phoneError, 
     },
   ];
 

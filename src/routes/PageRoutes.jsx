@@ -9,6 +9,8 @@ import { APP_URL } from "../constants/APP_URL";
 import Consumer from "../features/consumers/pages/Consumer";
 import Products from "../features/products/pages/Product";
 import Resource from "../features/resources/pages/REsource";
+import Order from "../features/order/pages/Order";
+import ConsumerBranch from "../features/consumerBranch/pages/ConsumerBranch";
 function PageRoutes() {
 
   return (
@@ -27,8 +29,13 @@ function PageRoutes() {
           <Routes>
             <Route path={APP_URL.DASHBOARD} element={<MainContent />} />
             <Route path={APP_URL.CONSUMER} element={<Consumer/>}/>
+            <Route
+              path={APP_URL.CONSUMERBRANCH}
+              element={<ConsumerBranch />}
+            />
             <Route path={APP_URL.PRODUCT} element={<Products/>}/>
             <Route path={APP_URL.RESOURCE} element={<Resource/>}/>
+            <Route path={APP_URL.ORDER} element={<Order/>}/>
           </Routes>
         </div>
       </div>

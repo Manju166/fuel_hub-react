@@ -4,12 +4,13 @@ body {
   }
   
   .consumerBranch {
-    max-width: 1200px;
-    margin: auto;
     padding: 20px;
     border-radius: 8px;
   }
-  
+  .consumerheader{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;  }
   h1 {
     color: #333;
     margin-bottom: 20px;

@@ -32,7 +32,7 @@ const ReusableForm = ({
                 onChange={(value) => setFormData({ ...formData, [field.name]: value })}
                 placeholder={field.placeholder || "Select an option"}
               >
-                {field.options.map(option => (
+                {field.options?.map(option => (
                   <Select.Option key={option.value} value={option.value}>
                     {option.label}
                   </Select.Option>
