@@ -12,6 +12,7 @@ import {useDeleteConsumer} from '../hooks/useDeleteConsumer';
 import './style.css'
 import { Form } from "antd";
 import { APP_URL } from "../../../constants/APP_URL";
+import Button from "../../../components/Button/Button";
 Modal.setAppElement("#root");
 
 function Consumer() {
@@ -78,9 +79,7 @@ const handlePhoneNumberChange = (e) => {
     <>
       <h1>Consumer List</h1>
       <div className="consumer">
-        <button className="consumer__add-button" onClick={openAddModal}>
-          Add Customer
-        </button>
+      <Button className="add--button" onClick={openAddModal} label="Add Consumer"/>
       </div>
 
       <ConsumerList

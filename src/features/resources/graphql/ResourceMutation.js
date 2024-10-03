@@ -28,6 +28,7 @@ export const UPDATE_RESOURCE = gql`
         unit
         name
         capacity
+        vehicleId
       }
     }
   }

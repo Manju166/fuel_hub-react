@@ -50,7 +50,6 @@ export const useAddConsumer = (refetch, setIsModalOpen, setErrorMessages, form) 
         },
       });
 
-      // Check if there are any backend errors
       const backendErrors = data?.createConsumer?.errors;
       if (backendErrors && backendErrors.length > 0) {
         const emailError = backendErrors.find((error) =>

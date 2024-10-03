@@ -5,74 +5,8 @@
   margin: 20px auto;
 }
 
-.product-form__field {
-  margin-bottom: 18px;
-}
-
-.product-form__label {
-  display: block;
-  font-weight: bold;
-  color: #333;
-}
-
-.product-form__input{
-  width: 99%;
-  padding: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-.product-form__select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.product-form__input:focus,
-.product-form__select:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
 .product-form__error-message {
   color: red;
-  margin-bottom: 16px;
-}
-
-.product-form__buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-}
-
-.product-form__button--primary {
-  background-color: #4caf50;
-  border: none;
-  color: #f3ebeb;
-  width: 28%;
-  padding: 8px 16px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.product-form__button--primary:hover {
-  background-color: #689e6a;
-}
-
-.product-form__button--cancel {
-  background-color: #e46161;
-  border: 1px solid #d9d9d9;
-  color: #f3ebeb;
-  width: 28%;
-  padding: 8px 16px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.product-form__button--cancel:hover {
-  background-color: #c78383;
+  margin-top: 20px;
+  margin-bottom: 1px;
 }

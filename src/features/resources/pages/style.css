@@ -1,55 +1,9 @@
-
-
    .resource{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    float: right;
   }
-  
-    .table-container__add-resource-btn {
-    background-color: rgb(73, 199, 73);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    }
-    
-    .table-container__add-resource-btn:hover {
-      background-color: rgb(115, 185, 115);
-    }
-    
-    .ReactModal__Overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .resource-modal {
-      width: 400px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      margin: 0 auto;
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .modal-header h2 {
-      font-size: 24px;
-      color: #333;
-      text-align: center;
-    }
+
     
   

@@ -10,6 +10,7 @@ import OutletList from "../components/OutletList";
 import OutletForm from "../components/OutletForm";
 import './style.css';
 import { APP_URL } from "../../../constants/APP_URL";
+import Button from "../../../components/Button/Button";
 Modal.setAppElement("#root");
 
 function ConsumerBranch() {
@@ -57,9 +58,7 @@ function ConsumerBranch() {
           <span><Link to={APP_URL.DASHBOARD}>Dashboard</Link></span> /{" "}
           <Link to={APP_URL.CONSUMER}><span>Consumer List</span></Link>
         </div>
-        <button className="table-container__add-branch-btn" onClick={openAddModal}>
-          Add Outlet
-        </button>
+        <Button className="add--button" onClick={openAddModal} label="Add Outlets"/>
       </div>
 
       <OutletList

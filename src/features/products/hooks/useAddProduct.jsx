@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { CREATE_PRODUCT } from "../graphql/ProductMutation";
+import { toast } from "react-toastify";
 
 export const useAddProduct = (refetch, setIsModalOpen, setErrorMessage) => {
   const [createProduct] = useMutation(CREATE_PRODUCT);
@@ -20,6 +21,7 @@ export const useAddProduct = (refetch, setIsModalOpen, setErrorMessage) => {
         } },
       });
       if (data.createProduct.product) {
+        toast.success("Product added")
         refetch();
         setIsModalOpen(false);
         setErrorMessage("");

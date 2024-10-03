@@ -9,6 +9,7 @@ import ProductList from "../components/ProductList";
 import ProductView from "../components/ProductView";
 import ProductForm from "../components/ProductForm";
 import "./style.css";
+import Button from "../../../components/Button/Button";
 Modal.setAppElement("#root");
 
 const Products = () => {
@@ -118,9 +119,8 @@ const Products = () => {
             ))}
           </select>
         </div>
-        <button className="products__add-button" onClick={openAddModal}>
-          Add Product
-        </button>
+        <Button className="add--button" onClick={openAddModal} label="Add Product"/>
+       
       </div>
 
       <ProductList

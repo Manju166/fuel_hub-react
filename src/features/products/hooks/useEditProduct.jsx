@@ -29,7 +29,7 @@ export const useEditProduct = (refetch, setIsModalOpen, setErrorMessage) => {
         },
       });
 if (data.updateProduct.product) {
-  console.log("Product updated:", data.updateProduct.product);
+  toast.success("Product updated")
   refetch(); 
   setIsModalOpen(false);
   setErrorMessage("");

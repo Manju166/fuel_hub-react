@@ -1,5 +1,6 @@
 import React from "react";
 import './style.css'
+import Button from "../../../../components/Button/Button";
 function OutletForm({ formData, setFormData, consumerId, handleAdd, handleUpdate, modalMode, setIsModalOpen }) {
   return (
     <div className="outlet-form">
@@ -25,30 +26,26 @@ function OutletForm({ formData, setFormData, consumerId, handleAdd, handleUpdate
         </div>
 
         <div className="outlet-form__footer">
-          {modalMode === "add" ? (
-            <button
-              className="outlet-form__button outlet-form__button--add"
+        {modalMode === "add" ? (
+            <Button
+              className="button--primary"
               type="button"
-              onClick={() => handleAdd(formData, consumerId)}
-            >
-              Add
-            </button>
+              onClick={() => handleAdd(formData, consumerId)} label="Add"
+            />
           ) : (
-            <button
-              className="outlet-form__button outlet-form__button--update"
+            <Button
+              className="button--primary"
               type="button"
-              onClick={() => handleUpdate(formData,consumerId)}
-            >
-              Update
-            </button>
+              onClick={() => handleUpdate(formData, consumerId)} label="Update"
+            />
+              
           )}
-          <button
-            className="outlet-form__button outlet-form__button--cancel"
+          <Button
+            className="button--cancel"
             type="button"
             onClick={() => setIsModalOpen(false)}
-          >
-            Cancel
-          </button>
+            label="Cancel"
+          />
         </div>
       </form>
     </div>

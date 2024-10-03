@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBell, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import { Modal, Button } from 'antd';
 import logo from '../../assets/image.png';
 import './style.css';
@@ -15,7 +15,6 @@ function Navbar() {
 
   const handleViewProfile = () => {
     console.log('Viewing profile...');
-    // setIsModalVisible(false);
   };
 
   const handleCancel = () => {
@@ -27,7 +26,6 @@ function Navbar() {
       <img src={logo} alt="fuelhub" className="navbar__logo" />
 
       <div className="navbar__right">
-        <FaBell className="navbar__notification-icon" />
         <FaUser 
           className="navbar__user-icon" 
           onClick={showModal} 

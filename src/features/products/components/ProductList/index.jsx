@@ -57,7 +57,6 @@ const ProductList = ({ products, handleView, handleEdit, handleDelete }) => {
         columnDefs={columnDefs}
         pagination={true}
         paginationPageSize={10}
-        domLayout="autoHeight"
       />
     </div>
   );

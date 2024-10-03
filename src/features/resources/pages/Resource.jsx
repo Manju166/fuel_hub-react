@@ -1,56 +1,95 @@
-// src/components/Resource.js
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
 import Modal from "react-modal";
+import './style.css';
 import { GET_RESOURCES } from "../graphql/ResourceQuery";
-import { useAddResource } from "../hooks/useAddResource";
 import { useEditResource } from "../hooks/useEditResource";
 import { useDeleteResource } from "../hooks/useDeleteResource";
-import './style.css'
-import ResourceList from "../components/ResourceList";
+import { useAddResource } from "../hooks/useAddResource";
+import { useQuery } from "@apollo/client";
 import ResourceView from "../components/ResourceView";
 import ResourceForm from "../components/ResourceForm";
+import ResourceList from "../components/ResourceList";
+import Button from "../../../components/Button/Button";
+
 Modal.setAppElement("#root");
 
-function Resource() {
+const Resource = () => {
   const { loading, error, data, refetch } = useQuery(GET_RESOURCES);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState("view");
+  
+  // State management for modal, form data, and error messages
+  const [modalMode, setModalMode] = useState("");
   const [selectedResource, setSelectedResource] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    resourceStatus: "",
+    name: "",
     resourceCategory: "",
+    resourceStatus: "",
+    capacity: null,
+    unit: "",
+    vehicleId: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Use the handlers from hooks
-  const handleAdd = useAddResource(refetch, setIsModalOpen, setErrorMessage);
-  const handleUpdate = useEditResource(refetch, setIsModalOpen, setErrorMessage);
+  const categoryOptions = ["tanker_truck", "rails_tank", "tank_wagon", "tanker_LNG", "bitumen_truck"];
+  const statusOptions = ["available", "unavailable"];
+  const unitOptions = ["liters", "gallons"];
+
+  const handleAdd = useAddResource(refetch);
+  const handleUpdate = useEditResource(refetch, () => setIsModalOpen(false), setErrorMessage);
   const handleDelete = useDeleteResource(refetch);
 
   const openAddModal = () => {
-    setFormData({ resourceStatus: "", resourceCategory: "" });
     setModalMode("add");
-    setIsModalOpen(true);
+    setFormData({
+      name: "",
+      resourceCategory: "",
+      resourceStatus: "",
+      capacity: null,
+      unit: "",
+      vehicleId: "",
+    });
     setErrorMessage("");
+    setIsModalOpen(true);
   };
 
+  const handleView = (resource) => {
+    setSelectedResource(resource);
+    setModalMode("view");
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = (resource) => {
+    setSelectedResource(resource);
+    setFormData({ ...resource });
+    setModalMode("edit");
+    setErrorMessage("");
+    setIsModalOpen(true);
+  };
+
+const handleSubmit = (formData) => {
+  if (modalMode === "add") {
+    handleAdd(formData, setErrorMessage, () => setIsModalOpen(false));
+  } else if (modalMode === "edit") {
+    handleUpdate(selectedResource, formData, setErrorMessage, () => setIsModalOpen(false));
+  }
+};
+
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: There was an error fetching the data.</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <>
-      <h1>Resource List</h1>
-      <button className="table-container__add-resource-btn" onClick={openAddModal}>
-        Add Resource
-      </button>
+    <div>
+    <h1>Resource List</h1>
+      <div className="resource">
+      <Button className="add--button" onClick={openAddModal} label="Add Resource"/>
+      </div>
       <ResourceList
-        resources={data?.getResources?.resources}
-        handleView={setSelectedResource}
-        handleEdit={setSelectedResource}
+        data={data}
+        handleView={handleView}
+        handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
+
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
@@ -59,25 +98,30 @@ function Resource() {
           className="resource-modal"
         >
           <div className="modal-header">
-            <h2>{modalMode === "view" ? "View Resource" : modalMode === "edit" ? "Edit Resource" : "Add Resource"}</h2>
+            <h2>{modalMode === "view" ? "" : modalMode === "edit" ? "Edit Resource" : "Add Resource"}</h2>
           </div>
           {modalMode === "view" ? (
-            <ResourceView selectedResource={selectedResource} />
+            <ResourceView selectedResource={selectedResource}  onClose={() => setIsModalOpen(false)}/>
           ) : (
             <ResourceForm
               formData={formData}
               setFormData={setFormData}
               handleAdd={handleAdd}
               handleUpdate={handleUpdate}
-              modalMode={modalMode}
               selectedResource={selectedResource}
+              modalMode={modalMode}
+              setIsModalOpen={setIsModalOpen}
+              errorMessage={errorMessage}
+            handleSubmit={handleSubmit}
+            categoryOptions={categoryOptions}
+            statusOptions={statusOptions}
+            unitOptions={unitOptions}
             />
           )}
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
         </Modal>
       )}
-    </>
+    </div>
   );
-}
+};
 
 export default Resource;

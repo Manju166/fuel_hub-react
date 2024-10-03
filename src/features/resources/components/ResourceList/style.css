@@ -1,69 +1,90 @@
-.table-container {
-  margin-top: 20px;
-  display: block; 
-  width: 100%; 
-  box-sizing: border-box; 
-}
-
-.resource-status-available {
-  padding: 2px 5px;
-  color: green;
-  border: 1px dashed #28A745;
-  border-radius: 10px;
-}
-
-.resource-status-unavailable {
-  color: red;
-  padding: 2px 5px;
-  border-radius: 10px;
-  border: 1px dashed #DC3545;
-}
-
-.resource-status-default {
-  color: #FFFFFF;
-}
-
-.table__actions {
+.resource{
   display: flex;
-  gap: 5px;
+  justify-content: space-between;
 }
 
-.table__action-button {
-  color: #40a9ff;
-  background: transparent;
+/* .table-container__add-customer-btn {
+  background-color: rgb(73, 199, 73);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.table-container__add-customer-btn:hover {
+  background-color: rgb(115, 185, 115);
+} */
+
+.ag-theme-alpine.table-container {
+  height: 65vh;
+  position: relative;
+  margin: auto;
+}
+/* .table__actions button {
+  padding: 10px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.2em;
+  color: #357abd;
 }
-
-.action-buttons button:hover {
+.action-buttons button:hover{
   color: green;
 }
+.show-branch-button{
+  background-color: transparent;
+  color: rgb(241, 83, 9);
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+} */
 
-.resource-status-available {
-  color: #28A745;
-  border: 1px dashed #28A745;
-  border-radius: 10px;
+.resource-modal {
+  width: 400px;
+  margin: 100px auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.resource-status-unavailable {
-  color: #DC3545;
-  border: 1px dashed #DC3545;
-  border-radius: 10px;
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
 }
 
-.resource-status-default {
-  color: #FFFFFF;
+.modal-header h2 {
+  font-size: 24px;
+  color: #333;
+  width: 100%;
+  text-align: center;
 }
 
-.table__action-button--view:hover {
-  color: #40a9ff;
+.view-modal .modal-header {
+  border-bottom: none;
 }
 
-.table__action-button--edit:hover {
-  color: #52c41a;
+.view-modal .modal-footer {
+  display: none;
 }
 
-.table__action-button--delete:hover {
-  color: #f5222d;
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
 }
+.resourceheader{
+  display: flex;
+  justify-content: space-between;
+}
+.ag-theme-alpine.table-container{
+  width: 60%;
+  margin: auto;
+}
+

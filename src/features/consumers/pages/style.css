@@ -4,16 +4,7 @@
   margin-bottom: 10px;
 }
 
-.consumer__add-button {
-  padding: 13px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.consumer__add-button:hover {
-  background-color: #45a049;
+.consumer-modal {
+  color: white; 
+  margin-top: 30px;
 }
